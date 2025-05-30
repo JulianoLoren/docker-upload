@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  uploader:
+    image: julianoloren/file-uploader:main
+    container_name: file_uploader
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      - TZ=${TZ}
+      - LOCAL_PATH=${LOCAL_PATH}
+      - REMOTE_PATH=${REMOTE_PATH}
+      - REMOTE_HOST=${REMOTE_HOST}
+      - REMOTE_PORT=${REMOTE_PORT}
+      - REMOTE_USER=${REMOTE_USER}
+      - REMOTE_PASS=${REMOTE_PASS}
+      - UPLOAD_INTERVAL_MIN=${UPLOAD_INTERVAL_MIN}
+    volumes:
+      - ./:/data
